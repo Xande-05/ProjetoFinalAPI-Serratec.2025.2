@@ -1,5 +1,7 @@
 package org.serratec.ecommerce.entity;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
@@ -8,13 +10,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "produto")
-public class Produto  extends BaseEntity {
-	private static final long serialVersionUID = 1L;
+public class Produto {
 	
 	private String nome;
-	private Double preço;
+	private BigDecimal preco;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "categoria_id",nullable = false)
 	private Categoria categoria;
 	
@@ -24,10 +25,10 @@ public class Produto  extends BaseEntity {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Produto(String nome, Double preço, Categoria categoria) {
+	public Produto(String nome, BigDecimal preco, Categoria categoria) {
 		super();
 		this.nome = nome;
-		this.preço = preço;
+		this.preco = preco;
 		this.categoria = categoria;
 	}
 	
@@ -40,12 +41,12 @@ public class Produto  extends BaseEntity {
 		this.nome = nome;
 	}
 
-	public Double getPreço() {
-		return preço;
+	public BigDecimal getPreco() {
+		return preco;
 	}
 
-	public void setPreço(Double preço) {
-		this.preço = preço;
+	public void setPreço(BigDecimal preco) {
+		this.preco = preco;
 	}
 
 	public Categoria getCategoria() {
@@ -55,6 +56,14 @@ public class Produto  extends BaseEntity {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
+
+	
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 	
 	
 	
