@@ -90,9 +90,12 @@ public class PedidoDTO {
 	}
 	
 
+	
+
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, itens);
+		return Objects.hash(clienteID, id, itens, status);
 	}
 
 
@@ -104,8 +107,9 @@ public class PedidoDTO {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		PedidoRequestDTO other = (PedidoRequestDTO) obj;
-		return Objects.equals(id, other.id) && Objects.equals(itens, other.itens);
+		PedidoDTO other = (PedidoDTO) obj;
+		return Objects.equals(clienteID, other.clienteID) && Objects.equals(id, other.id)
+				&& Objects.equals(itens, other.itens) && status == other.status;
 	}
 
 
