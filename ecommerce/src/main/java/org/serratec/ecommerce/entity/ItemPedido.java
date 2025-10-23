@@ -1,5 +1,6 @@
 package org.serratec.ecommerce.entity;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 import jakarta.persistence.Column;
@@ -16,23 +17,22 @@ public class ItemPedido {
 
 	@EmbeddedId
 	private ItemPedidoPK id = new ItemPedidoPK();
-	
+
 	@NotNull(message = "Necessário atribuir valor ao Pedido")
 	@Column(nullable = false)
-	private Double valor;
-	
+	private BigDecimal valor;
+
 	@Column
-	private Double desconto;
-	
+	private BigDecimal desconto;
+
 	@Column
-	private Double quantidade;
+	private Integer quantidade;
 
 	public ItemPedido() {
 		super();
 	}
 
-	public ItemPedido(ItemPedidoPK id, Double valor,
-			Double desconto, Double quantidade) {
+	public ItemPedido(ItemPedidoPK id, BigDecimal valor, BigDecimal desconto, Integer quantidade) {
 		super();
 		this.id = id;
 		this.valor = valor;
@@ -44,31 +44,31 @@ public class ItemPedido {
 		return id;
 	}
 
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+	public BigDecimal getDesconto() {
+		return desconto;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
 	public void setId(ItemPedidoPK id) {
 		this.id = id;
 	}
 
-	public Double getValor() {
-		return valor;
-	}
-
-	public void setValor(Double valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 
-	public Double getDesconto() {
-		return desconto;
-	}
-
-	public void setDesconto(Double desconto) {
+	public void setDesconto(BigDecimal desconto) {
 		this.desconto = desconto;
 	}
 
-	public Double getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Double quantidade) {
+	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
 
@@ -97,6 +97,5 @@ public class ItemPedido {
 				+ ", getQuantidade()=" + getQuantidade() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass()
 				+ ", toString()=" + super.toString() + "]";
 	}
-	
-	
+
 }
