@@ -10,7 +10,7 @@ public class CategoriaDTO {
 	
 	public CategoriaDTO(Categoria categoria) {
 		super();
-		this.id = categoria.getId(); // call the getId() of  Categoria entity
+		this.id = categoria.getId(); 
 		this.nome = categoria.getNome();
 		this.setCategoria(categoria);
 	}
