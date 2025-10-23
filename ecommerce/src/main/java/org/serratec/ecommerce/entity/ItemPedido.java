@@ -1,5 +1,7 @@
 package org.serratec.ecommerce.entity;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -29,7 +31,7 @@ public class ItemPedido {
 		super();
 	}
 
-	public ItemPedido(ItemPedidoPK id, @NotNull(message = "Necessário atribuir valor ao Pedido") Double valor,
+	public ItemPedido(ItemPedidoPK id, Double valor,
 			Double desconto, Double quantidade) {
 		super();
 		this.id = id;
@@ -68,6 +70,32 @@ public class ItemPedido {
 
 	public void setQuantidade(Double quantidade) {
 		this.quantidade = quantidade;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(desconto, id, quantidade, valor);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ItemPedido other = (ItemPedido) obj;
+		return Objects.equals(desconto, other.desconto) && Objects.equals(id, other.id)
+				&& Objects.equals(quantidade, other.quantidade) && Objects.equals(valor, other.valor);
+	}
+
+	@Override
+	public String toString() {
+		return "ItemPedido [id=" + id + ", valor=" + valor + ", desconto=" + desconto + ", quantidade=" + quantidade
+				+ ", getId()=" + getId() + ", getValor()=" + getValor() + ", getDesconto()=" + getDesconto()
+				+ ", getQuantidade()=" + getQuantidade() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass()
+				+ ", toString()=" + super.toString() + "]";
 	}
 	
 	

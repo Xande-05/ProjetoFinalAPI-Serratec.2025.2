@@ -2,6 +2,7 @@ package org.serratec.ecommerce.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -31,7 +32,7 @@ public class Pedido {
 	private Cliente clienteID;
 	
 	@OneToMany(mappedBy = "id.pedido", cascade = CascadeType.ALL)
-	private List<ItemPedido> itens = new ArrayList<>();
+	private Set<ItemPedido> itens;
 
 	public Long getId() {
 		return id;
@@ -57,13 +58,25 @@ public class Pedido {
 		this.clienteID = cliente;
 	}
 
-	public List<ItemPedido> getItens() {
+	public Cliente getClienteID() {
+		return clienteID;
+	}
+
+	public void setClienteID(Cliente clienteID) {
+		this.clienteID = clienteID;
+	}
+
+	public Set<ItemPedido> getItens() {
 		return itens;
 	}
 
-	public void setItens(List<ItemPedido> itens) {
+	public void setItens(Set<ItemPedido> itens) {
 		this.itens = itens;
 	}
+
+
+
+	
 	
 	
 }
