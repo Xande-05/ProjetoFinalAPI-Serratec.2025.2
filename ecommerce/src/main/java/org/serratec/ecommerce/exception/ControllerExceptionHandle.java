@@ -1,5 +1,14 @@
 package org.serratec.ecommerce.exception;
 
-public class ControllerExceptionHandle {
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+@ControllerAdvice
+public class ControllerExceptionHandler extends ResponseEntityExceptionHandler{
+	
+	@ExceptionHandler(ResourceNotFoundException.class)
+	
 
 }
