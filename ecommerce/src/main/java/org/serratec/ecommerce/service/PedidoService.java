@@ -8,6 +8,7 @@ import org.serratec.ecommerce.config.MailConfig;
 import org.serratec.ecommerce.dto.ItemPedidoRequestDTO;
 import org.serratec.ecommerce.dto.PedidoDTO;
 import org.serratec.ecommerce.dto.PedidoRequestDTO;
+import org.serratec.ecommerce.dto.ProdutoResponseDTO;
 import org.serratec.ecommerce.entity.Cliente;
 import org.serratec.ecommerce.entity.ItemPedido;
 import org.serratec.ecommerce.entity.Pedido;
