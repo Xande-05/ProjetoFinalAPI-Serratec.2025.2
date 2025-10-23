@@ -1,33 +1,38 @@
+
 package org.serratec.ecommerce.entity;
 
+import org.springframework.data.annotation.Id;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 
 @Entity
-@Table(name = "categoria")
-public class Categoria  {
-	
+@Table(name = "perfil")
+public class Perfil {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; 
+	@Column(name = "id_perfil")
+	private Long id;
+
+	@Size(max = 40, message = "O nome d perfil deve ter no maximo 40 caractere.")
+	@Column(name = "nome", length = 40)
 	private String nome;
-	
-	// Constructors
-	public Categoria() {
+
+	public Perfil() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Categoria(Long id, String nome) {
+	public Perfil(Long id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
 	}
 
-	// Getters and Setters
 	public Long getId() {
 		return id;
 	}
@@ -43,7 +48,5 @@ public class Categoria  {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
-	
+
 }
