@@ -50,20 +50,22 @@ public class ItemPedidoPK implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(pedido);
+	    return Objects.hash(pedido, produto);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ItemPedidoPK other = (ItemPedidoPK) obj;
-		return Objects.equals(pedido, other.pedido);
+	    if (this == obj)
+	        return true;
+	    if (obj == null)
+	        return false;
+	    if (getClass() != obj.getClass())
+	        return false;
+	    ItemPedidoPK other = (ItemPedidoPK) obj;
+	    return Objects.equals(pedido, other.pedido) &&
+	           Objects.equals(produto, other.produto);
 	}
+
 
 	@Override
 	public String toString() {
