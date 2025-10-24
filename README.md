@@ -89,8 +89,7 @@ O projeto segue uma arquitetura em camadas para organizar as responsabilidades:
  ### 1- Clone o repositório:
 ```
 Bash
-git clone https://github.com/seu-usuario/serratec-music-api.git
-cd serratec-music-api
+https://github.com/Xande-05/ProjetoFinalAPI-Serratec.2025.2.git
 ```
 
 ### 2- Configuração do Banco
