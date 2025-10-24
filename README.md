@@ -124,7 +124,7 @@ mvn spring-boot:run
 📦 **Diana Souza Ribeiro** – Catálogo de Produtos e documentação do projeto (README)  
 📬 **Alexandre Lício da Silva Morais** – Cliente e Integrações  
 🧮 **Joao Pedro Breves Massambani de Souza** – Pedidos e Transações  
-⚙️ **Enzo** – Lógica de Negócio e Configurações
+⚙️ **Enzo Converso** – Lógica de Negócio e Configurações
 
 🎓 Residentes do Serratec 2025.2  
 💻 Desenvolvedores Full Stack
