@@ -15,7 +15,7 @@ Este projeto consiste na construção de um sistema de vendas online para uma em
 |------------------|--------------------------------------------------|
 | Framework        | Spring Boot 3+                                   |
 | Persistência     | Spring Data JPA / Hibernate                      |
-| Banco de Dados   | PostgreSQL (Recomendado) / H2 (Para Testes)      |
+| Banco de Dados   | PostgreSQL (Recomendado) / Postman (Para Testes)      |
 | Segurança        | Spring Security / JWT (JSON Web Tokens)          |
 | Comunicação REST | RESTful Web Services / HTTP                      |
 | Integrações      | RestTemplate/WebClient (ViaCEP, E-mail Assíncrono) |
@@ -26,12 +26,38 @@ Este projeto consiste na construção de um sistema de vendas online para uma em
 
 ## 🏛️ Arquitetura e Padrões
 
-O projeto segue rigorosamente o Padrão em Camadas (Layers):
+O projeto segue uma arquitetura em camadas para organizar as responsabilidades:
 
-- **Controller (Recursos):** Interface HTTP, mapeia URIs e retorna DTOs.
-- **Service (Serviços):** Lógica de negócios e transações (@Transactional).
-- **Repository (Repositórios):** Acesso a dados via Spring Data JPA.
-- **Entity (Entidades):** Modelo de dados mapeado com JPA.
+📦 org.serratec.ecommerce 
+
+├── 📦 config      → Configurações gerais da aplicação (segurança, e-mail, Swagger).
+├── 📦 controller  → Recebe requisições HTTP e expõe os endpoints da API.
+├── 📦 dto         → Objetos de transferência usados para entrada e saída de dados.
+├── 📦 entity      → Modelos de dados mapeados para o banco via JPA.
+├── 📦 exception   → Tratamento de erros e exceções personalizadas.
+├── 📦 repository  → Acesso aos dados com Spring Data JPA.
+├── 📦 security    → Autenticação e autorização com JWT e Spring Security.
+├── 📦 service     → Lógica de negócios e orquestração entre camada.
+
+📦 org.serratec.ecommerce 
+├── 📦 controller   → Camada de API, responsável por expor os endpoints REST.  
+├── 📦 domain       → Entidades de domínio (modelos) que representam as tabelas do banco de dados.  
+├── 📦 exception    → Classes para tratamento de exceções globais.  
+└── 📦 repository   → Camada de acesso a dados, responsável pela comunicação com o banco via Spring Data JPA.
+
+
+
+### 📦 Descrição dos Pacotes
+
+- `config` → Configurações gerais (segurança, e-mail, Swagger)
+- `controller` → Endpoints REST (interface HTTP)
+- `dto` → Objetos de transferência de dados
+- `entity` → Modelos JPA mapeados para o banco
+- `exception` → Tratamento de erros personalizados
+- `repository` → Acesso a dados com Spring Data JPA
+- `security` → Autenticação e autorização (JWT, perfis)
+- `service` → Lógica de negócios e orquestração
+
 
 **Padrões Aplicados:**
 
@@ -61,21 +87,59 @@ O projeto segue rigorosamente o Padrão em Camadas (Layers):
 ### Pré-requisitos
 
 - JDK 17+
-- Maven ou Gradle
+- Apache Maven 3.8 ou superior
+- PostgreSQL instalado e em execução
+- Cliente de API como Postman ou Insomnia (opcional)
 
-### Configuração do Banco
+ ### 1- Clone o repositório:
+```
+Bash
+git clone https://github.com/seu-usuario/serratec-music-api.git
+cd serratec-music-api
+```
+
+
+### 2- Configuração do Banco
 
 1. Crie um banco PostgreSQL.
 2. Atualize o `application.properties` ou `application.yml`:
 
-
-properties
-```http
+## Properties
+```
 spring.datasource.url=jdbc:postgresql://localhost:5432/seu_banco_de_dados
-spring.datasource.username=seu_usuario
-spring.datasource.password=sua_senha
+spring.datasource.username=postegres
+spring.datasource.password=123456
 spring.jpa.hibernate.ddl-auto=update
 ```
+## Compilação
+```
+Bash
+mvn clean install
+```
+## Execução
+```
+Bash
+mvn spring-boot:run
+```
 
+## Documentação 
+-	API: http://localhost:8080
+- Swagger: http://localhost:8080/swagger-ui/index.html
+
+ ---
+## 👨‍💻 Autores
+
+🔐 **Bruno Ireno do Nascimento** – Segurança e Autenticação  
+📦 **Diana Souza Ribeiro** – Catálogo de Produtos  
+📬 **Alexandre Lício da Silva Morais** – Cliente e Integrações  
+🧮 **Joao Pedro Breves Massambani de Souza** – Pedidos e Transações  
+⚙️ **Enzo** – Lógica de Negócio e Configurações
+
+🎓 Residentes do Serratec 2025.2  
+💻 Desenvolvedores Full Stack
+
+
+
+ 
 
 
