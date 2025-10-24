@@ -111,7 +111,7 @@ mvn spring-boot:run
 ## 👨‍💻 Autores
 
 🔐 **Bruno Ireno do Nascimento** – Segurança e Autenticação  
-📦 **Diana Souza Ribeiro** – Catálogo de Produtos e Readme
+📦 **Diana Souza Ribeiro** – Catálogo de Produtos e documentação do projeto (README)  
 📬 **Alexandre Lício da Silva Morais** – Cliente e Integrações  
 🧮 **Joao Pedro Breves Massambani de Souza** – Pedidos e Transações  
 ⚙️ **Enzo** – Lógica de Negócio e Configurações
