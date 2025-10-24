@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.serratec.ecommerce.dto.ProdutoRequestDTO;
 import org.serratec.ecommerce.dto.ProdutoResponseDTO;
+import org.serratec.ecommerce.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
