@@ -4,7 +4,6 @@ import org.serratec.ecommerce.dto.PedidoDTO;
 import org.serratec.ecommerce.dto.PedidoRequestDTO;
 import org.serratec.ecommerce.entity.ItemPedido;
 import org.serratec.ecommerce.entity.Pedido;
-import org.serratec.ecommerce.exception.ResourceNotFoundException;
 import org.serratec.ecommerce.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -44,7 +43,7 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<PedidoDTO> inserir(@RequestBody PedidoRequestDTO pedidoDTO) throws ResourceNotFoundException {
+    public ResponseEntity<PedidoDTO> inserir(@RequestBody PedidoRequestDTO pedidoDTO) throws Exception {
         PedidoDTO novoPedido = pedidoService.inserir(pedidoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoPedido);
     }
