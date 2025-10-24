@@ -1,7 +1,6 @@
 package org.serratec.ecommerce.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -32,7 +31,7 @@ public class Pedido {
 	private Cliente clienteID;
 	
 	@OneToMany(mappedBy = "id.pedido", cascade = CascadeType.ALL)
-	private Set<ItemPedido> itens;
+	private Set<ItemPedido> itens = new HashSet<>();
 
 	public Long getId() {
 		return id;
