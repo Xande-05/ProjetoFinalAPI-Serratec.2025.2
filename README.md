@@ -53,6 +53,9 @@ O projeto segue uma arquitetura em camadas para organizar as responsabilidades:
 - Assincronicidade com `@Async` para envio de e-mails.
 
 ---
+## 📊 Diagrama do Banco de Dados
+
+---
 
 ## 🔑 Endpoints Principais (RESTful CRUD)
 
@@ -71,7 +74,7 @@ O projeto segue uma arquitetura em camadas para organizar as responsabilidades:
 ---
 ### Exemplos de Requisições
 
-
+---
 
 
 ## ⚙️ Como Rodar o Projeto
