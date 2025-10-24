@@ -11,6 +11,6 @@ public class EnderecoService {
 	
 	public Endereco buscarEnderecoPorCep(String cep) {
 		String url = "https://viacep.com.br/ws" + cep + "/json/";
-		return restTemplate.getForObject(url, Ebdereco.class);
+		return restTemplate.getForObject(url, Endereco.class);
 	}
 }
