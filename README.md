@@ -1,6 +1,11 @@
 # ProjetoFinalAPI-Serratec.2025.2
-## 🌟💻 **Grupo 02** 💻🌟
 
+
+<div align="center">
+  <h1 style="color:#007BFF;">Grupo 02</h1>
+</div>
+
+    
 # 🛍️ API RESTful E-commerce Varejista
 
 ## 📋 Descrição do Projeto
