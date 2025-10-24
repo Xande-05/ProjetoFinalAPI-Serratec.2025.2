@@ -45,7 +45,7 @@ public class Usuario implements UserDetails, Serializable {
 	private String senha;
 
 	@OneToMany(mappedBy = "id.usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<UsuarioPerfil> usuarioPerfis = new HashSet<>();
+	private Set<Perfil> usuarioPerfis = new HashSet<>();
 
 	public Usuario() {
 		super();
@@ -92,11 +92,12 @@ public class Usuario implements UserDetails, Serializable {
 		this.senha = senha;
 	}
 
-	public Set<UsuarioPerfil> getUsuarioPerfis() {
+
+	public Set<Perfil> getUsuarioPerfis() {
 		return usuarioPerfis;
 	}
 
-	public void setUsuarioPerfis(Set<UsuarioPerfil> usuarioPerfis) {
+	public void setUsuarioPerfis(Set<Perfil> usuarioPerfis) {
 		this.usuarioPerfis = usuarioPerfis;
 	}
 
@@ -125,14 +126,14 @@ public class Usuario implements UserDetails, Serializable {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> authorities = new ArrayList<>();
-		for (UsuarioPerfil usuarioPerfil : this.getUsuarioPerfis()) {
-			authorities.add(new SimpleGrantedAuthority(usuarioPerfil.getId().getPerfil().getNome()));
-
-		}
-		return authorities;
+	    List<GrantedAuthority> authorities = new ArrayList<>();
+	    for (Perfil perfil : this.getUsuarioPerfis()) {
+	        authorities.add(new SimpleGrantedAuthority(perfil.getNome()));
+	    }
+	    return authorities;
 	}
 
+	
 	public String getPassword() {
 		return senha;
 	}
