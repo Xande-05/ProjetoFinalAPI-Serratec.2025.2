@@ -30,34 +30,16 @@ O projeto segue uma arquitetura em camadas para organizar as responsabilidades:
 
 📦 org.serratec.ecommerce 
 
-├── 📦 config      → Configurações gerais da aplicação (segurança, e-mail, Swagger).
-├── 📦 controller  → Recebe requisições HTTP e expõe os endpoints da API.
-├── 📦 dto         → Objetos de transferência usados para entrada e saída de dados.
-├── 📦 entity      → Modelos de dados mapeados para o banco via JPA.
-├── 📦 exception   → Tratamento de erros e exceções personalizadas.
-├── 📦 repository  → Acesso aos dados com Spring Data JPA.
-├── 📦 security    → Autenticação e autorização com JWT e Spring Security.
-├── 📦 service     → Lógica de negócios e orquestração entre camada.
+├── 📦 config      → Configurações gerais da aplicação (segurança, e-mail, Swagger).  
+├── 📦 controller  → Recebe requisições HTTP e expõe os endpoints da API.  
+├── 📦 dto         → Objetos de transferência de dados.  
+├── 📦 entity      → Modelos de dados mapeados para o banco via JPA.  
+├── 📦 exception   → Tratamento de erros e exceções personalizadas.  
+├── 📦 repository  → Acesso aos dados com Spring Data JPA.  
+├── 📦 security    → Autenticação e autorização com JWT e Spring Security.  
+├── 📦 service     → Lógica de negócios e orquestração entre camada.  
 
-📦 org.serratec.ecommerce 
-├── 📦 controller   → Camada de API, responsável por expor os endpoints REST.  
-├── 📦 domain       → Entidades de domínio (modelos) que representam as tabelas do banco de dados.  
-├── 📦 exception    → Classes para tratamento de exceções globais.  
-└── 📦 repository   → Camada de acesso a dados, responsável pela comunicação com o banco via Spring Data JPA.
-
-
-
-### 📦 Descrição dos Pacotes
-
-- `config` → Configurações gerais (segurança, e-mail, Swagger)
-- `controller` → Endpoints REST (interface HTTP)
-- `dto` → Objetos de transferência de dados
-- `entity` → Modelos JPA mapeados para o banco
-- `exception` → Tratamento de erros personalizados
-- `repository` → Acesso a dados com Spring Data JPA
-- `security` → Autenticação e autorização (JWT, perfis)
-- `service` → Lógica de negócios e orquestração
-
+---
 
 **Padrões Aplicados:**
 
@@ -98,7 +80,6 @@ git clone https://github.com/seu-usuario/serratec-music-api.git
 cd serratec-music-api
 ```
 
-
 ### 2- Configuração do Banco
 
 1. Crie um banco PostgreSQL.
@@ -130,7 +111,7 @@ mvn spring-boot:run
 ## 👨‍💻 Autores
 
 🔐 **Bruno Ireno do Nascimento** – Segurança e Autenticação  
-📦 **Diana Souza Ribeiro** – Catálogo de Produtos  
+📦 **Diana Souza Ribeiro** – Catálogo de Produtos e Readme
 📬 **Alexandre Lício da Silva Morais** – Cliente e Integrações  
 🧮 **Joao Pedro Breves Massambani de Souza** – Pedidos e Transações  
 ⚙️ **Enzo** – Lógica de Negócio e Configurações
