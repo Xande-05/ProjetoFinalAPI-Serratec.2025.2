@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors; 
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -27,123 +28,103 @@ import jakarta.validation.constraints.Email;
 @Table(name = "usuario")
 public class Usuario implements UserDetails, Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_usuario")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
+    private Long id;
 
-	@Column(name = "nome")
-	private String nome;
+    @Column(name = "nome")
+    private String nome;
 
-	@Column(name = "email")
-	@Email
-	private String email;
+    @Column(name = "email")
+    @Email
+    private String email;
 
-	@Column(name = "senha")
-	private String senha;
+    @Column(name = "senha")
+    private String senha;
 
-	@OneToMany(mappedBy = "id.usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<UsuarioPerfil> usuarioPerfis = new HashSet<>();
+    @OneToMany(mappedBy = "id.usuario", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true) // Adicionado orphanRemoval
+    private Set<UsuarioPerfil> usuarioPerfis = new HashSet<>();
 
-	public Usuario() {
-		super();
-	}
+    public Usuario() {
+        super();
+    }
 
-	public Usuario(Long id, String nome, String email, String senha) {
-		super();
-		this.id = id;
-		this.nome = nome;
-		this.email = email;
-		this.senha = senha;
+    public Usuario(Long id, String nome, String email, String senha) {
+        super();
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+    }
 
-	}
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    public String getSenha() { return senha; }
+    public void setSenha(String senha) { this.senha = senha; }
+    public Set<UsuarioPerfil> getUsuarioPerfis() { return usuarioPerfis; }
+    public void setUsuarioPerfis(Set<UsuarioPerfil> usuarioPerfis) { this.usuarioPerfis = usuarioPerfis; }
+    public static long getSerialversionuid() { return serialVersionUID; }
 
-	public Long getId() {
-		return id;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Usuario other = (Usuario) obj;
+        return Objects.equals(id, other.id); 
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+     @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
-	public String getNome() {
-		return nome;
-	}
+    @Override
+    public String toString() {
+        return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + "]";
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.usuarioPerfis.stream()
+                .map(up -> new SimpleGrantedAuthority(up.getId().getPerfil().getNome()))
+                .collect(Collectors.toList());
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    @Override
+    public String getPassword() {
+        return senha;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    @Override
+    public String getUsername() {
+        return email; 
+    }
 
-	public String getSenha() {
-		return senha;
-	}
+    @Override
+    public boolean isAccountNonExpired() { return true; }
+    @Override
+    public boolean isAccountNonLocked() { return true; }
+    @Override
+    public boolean isCredentialsNonExpired() { return true; }
+    @Override
+    public boolean isEnabled() { return true; }
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public Set<UsuarioPerfil> getUsuarioPerfis() {
-		return usuarioPerfis;
-	}
-
-	public void setUsuarioPerfis(Set<UsuarioPerfil> usuarioPerfis) {
-		this.usuarioPerfis = usuarioPerfis;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		return Objects.equals(email, other.email) && Objects.equals(id, other.id) && Objects.equals(nome, other.nome)
-				&& Objects.equals(senha, other.senha);
-	}
-
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nome" + nome + ",email=" + email + ",senha" + senha + ",getId()=" + getId()
-				+ ", hashCode()=" + hashCode() + ",getClass()=" + getClass() + ";toString()=" + super.toString() + "]";
-	}
-
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<GrantedAuthority> authorities = new ArrayList<>();
-		for (UsuarioPerfil usuarioPerfil : this.getUsuarioPerfis()) {
-			authorities.add(new SimpleGrantedAuthority(usuarioPerfil.getId().getPerfil().getNome()));
-
-		}
-		return authorities;
-	}
-
-	public String getPassword() {
-		return senha;
-	}
-
-	public String getUsername() {
-		return email;
-	}
-
-	public Collection<? extends GrantedAuthority> getPerfis() {
+	public static void setFotoPerfilPath(String novoCaminhoFoto) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
+	public void setUrlFotoPerfil(String urlDaFoto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+    
 }
