@@ -4,20 +4,21 @@ import java.math.BigDecimal;
 
 public class ProdutoRequestDTO {
 	
-	private Long nome;
+	private String nome;
     private BigDecimal preco;
     private Long categoriaId;
     
-    //getters and setters
+    
 	
-      public Long getNome() {
-		return nome;
-	}
-	public void setNome(Long nome) {
-		this.nome = nome;
-	}
+   
 	public BigDecimal getPreco() {
 		return preco;
+	}
+	public String getNome() {
+		return nome;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
