@@ -1,8 +1,8 @@
-# ProjetoFinalAPI-Serratec.2025.2
+## ProjetoFinalAPI-Serratec.2025.2
 
 
 <div align="center">
-  <h1 style="color:#007BFF;">Grupo 02</h1>
+  <h1>Grupo 02</h1>
 </div>
 
     
@@ -66,8 +66,13 @@ O projeto segue uma arquitetura em camadas para organizar as responsabilidades:
 | Pedido        | POST   | `/pedidos`                 | Cria novo pedido (requer autenticação)         | 201, 404, 400      |
 | Pedido        | GET    | `/pedidos/{id}`            | Busca pedido por ID com valor total            | 200, 404           |
 | Pedido        | PUT    | `/pedidos/{id}/status`     | Altera o status do pedido                      | 200, 400, 404      |
+| Pedido        | DELETE | `/pedidos/{id}/status`     | Altera o status do pedido                      | 200, 400, 404      |
 
 ---
+### Exemplos de Requisições
+
+
+
 
 ## ⚙️ Como Rodar o Projeto
 
