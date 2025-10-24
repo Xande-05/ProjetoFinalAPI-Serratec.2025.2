@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid; 
+
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaController {
-	
-		
-	@Autowired
+
+
+    @Autowired
     private CategoriaService categoriaService;
 
     @GetMapping
@@ -37,13 +39,13 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public ResponseEntity<CategoriaDTO> inserir(@RequestBody CategoriaDTO categoriaDTO) {
+    public ResponseEntity<CategoriaDTO> inserir(@Valid @RequestBody CategoriaDTO categoriaDTO) { 
         CategoriaDTO categoriaCriada = categoriaService.inserir(categoriaDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(categoriaCriada);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoriaDTO> editar(@PathVariable Long id, @RequestBody CategoriaDTO categoriaDTO) {
+    public ResponseEntity<CategoriaDTO> editar(@PathVariable Long id, @Valid @RequestBody CategoriaDTO categoriaDTO) { 
         return categoriaService.editar(id, categoriaDTO)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
@@ -59,5 +61,3 @@ public class CategoriaController {
         }
     }
 }
-
-

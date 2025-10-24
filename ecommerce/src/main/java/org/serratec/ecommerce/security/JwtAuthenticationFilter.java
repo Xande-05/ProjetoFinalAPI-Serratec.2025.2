@@ -1,6 +1,5 @@
 package org.serratec.ecommerce.security;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -33,14 +32,16 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
 		try {
-			LoginDto loginDto = new ObjectMapper().readValue(request.getInputStream(),LoginDto.class);
-			UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-					loginDto.getUsername(), loginDto.getPassword(), new ArrayList<>());
+			LoginDto loginDto = new ObjectMapper().readValue(request.getInputStream(), LoginDto.class);
+
+			UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(loginDto.getEmail(),
+					loginDto.getSenha(), new ArrayList<>());
+
 			Authentication auth = authenticationManager.authenticate(authToken);
 			return auth;
 
 		} catch (IOException e) {
-			throw new RuntimeException("Falha ao autenticar o usuario", e);
+			throw new RuntimeException("Falha ao autenticar o usuário", e);
 		}
 	}
 
@@ -49,8 +50,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			Authentication authResult) throws IOException, ServletException {
 		String username = ((UserDetails) authResult.getPrincipal()).getUsername();
 		String token = jwtUtil.generateToken(username);
-		response.addHeader("Authentication", "Bearer" + token);
-		response.addHeader("acess-control-expose-headers", "Authentication");
+
+		response.addHeader("Authorization", "Bearer " + token);
+		response.addHeader("access-control-expose-headers", "Authorization");
 	}
 
 }

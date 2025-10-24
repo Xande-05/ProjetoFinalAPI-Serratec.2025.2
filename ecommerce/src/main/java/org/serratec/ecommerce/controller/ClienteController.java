@@ -16,34 +16,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
 
-	@Autowired
-	private ClienteService clienteService;
-	
-	@PostMapping
-	public ResponseEntity<ClienteResponseDTO> criar(@RequestBody ClienteRequestDTO dto) {
+    @Autowired
+    private ClienteService clienteService;
+
+    @PostMapping
+    public ResponseEntity<ClienteResponseDTO> criar(@Valid @RequestBody ClienteRequestDTO dto) {
         ClienteResponseDTO novoCliente = clienteService.criarCliente(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoCliente);
-	}
-	
-	@GetMapping
-	public List<ClienteResponseDTO> listar(){
-		return clienteService.listarTodos();
-	}
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<ClienteResponseDTO> buscarPorId(@PathVariable Long id) {
-	    ClienteResponseDTO cliente = clienteService.buscarPorId(id);
-	    return ResponseEntity.ok(cliente);
-	}
+    }
 
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deletar(@PathVariable Long id) {
-	    clienteService.deletar(id);
-	    return ResponseEntity.noContent().build();
-	}
+    @GetMapping
+    public ResponseEntity<List<ClienteResponseDTO>> listar() {
+        return ResponseEntity.ok(clienteService.listarTodos());
+    }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteResponseDTO> buscarPorId(@PathVariable Long id) {
+        ClienteResponseDTO cliente = clienteService.buscarPorId(id);
+        return ResponseEntity.ok(cliente);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id) {
+        clienteService.deletar(id);
+        return ResponseEntity.noContent().build();
+    }
 }
