@@ -1,15 +1,11 @@
 package org.serratec.ecommerce.controller;
 
-<<<<<<< HEAD
 import java.util.List;
-=======
->>>>>>> 0d01be92ddd33b6b034b80bcebf96288cc5c2188
 import org.serratec.ecommerce.dto.CategoriaDTO;
 import org.serratec.ecommerce.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,8 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/categorias")
 public class CategoriaController {
-
-    @Autowired
+	
+		
+	@Autowired
     private CategoriaService categoriaService;
 
     @GetMapping
@@ -62,35 +59,5 @@ public class CategoriaController {
         }
     }
 }
-=======
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
-@RestController
-@RequestMapping("/categorias")
-public class CategoriaController {
-	
-	@Autowired
-	private CategoriaService categoriaService;
-	
-	// categoria insert (Post)
-	
-	@PostMapping
-	public ResponseEntity<CategoriaDTO> inserir(@RequestBody CategoriaDTO categoriaDTO) {
-		CategoriaDTO categoriaCriada = categoriaService.inserir(categoriaDTO);
-		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaCriada);
-	}
-	
-	// categoria edit (Put
-	@PutMapping("/{id}") 
-	public ResponseEntity<CategoriaDTO> editar(@PathVariable Long id, @RequestBody CategoriaDTO categoriaDTO) {
-		CategoriaDTO categoriaAtualizada = categoriaService.editar(id, categoriaDTO);
-		return ResponseEntity.ok(categoriaAtualizada);
-	}
-}
->>>>>>> 0d01be92ddd33b6b034b80bcebf96288cc5c2188
