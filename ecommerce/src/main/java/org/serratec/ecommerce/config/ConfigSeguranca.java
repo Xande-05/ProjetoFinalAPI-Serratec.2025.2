@@ -1,4 +1,4 @@
-package org.serratec.ecommerce.config; 
+package org.serratec.ecommerce.config;
 
 import java.util.Arrays;
 
@@ -23,61 +23,69 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
-@EnableWebSecurity 
+@EnableWebSecurity
 public class ConfigSeguranca {
 
-    
+
     @Autowired
     private JwtUtil jwtUtil;
 
     @Autowired
-    private UserDetailsService userDetailsService; 
+    private UserDetailsService userDetailsService;
 
+    @Bean 
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http .csrf(AbstractHttpConfigurer::disable) 
+        http .csrf(AbstractHttpConfigurer::disable)
            .cors(cors -> cors.configurationSource(corsConfigurationSource()))
-           .httpBasic(AbstractHttpConfigurer::disable) 
+           .httpBasic(AbstractHttpConfigurer::disable)
            .authorizeHttpRequests(requests -> requests
-                      
-           .requestMatchers("/", "/public/**").permitAll() 
+
+           .requestMatchers("/", "/public/**").permitAll()
            .requestMatchers(HttpMethod.GET, "/produtos", "/categorias").permitAll()
            .requestMatchers("/auth/login").permitAll() 
            .requestMatchers(HttpMethod.GET, "/usuario").hasRole("CLIENTE") 
-           .requestMatchers(HttpMethod.POST, "/pedidos").hasRole("USER")
-           .requestMatchers("/admin/**").hasRole("ADMIN")
+           .requestMatchers(HttpMethod.POST, "/pedidos").hasRole("USER")    
+           .requestMatchers("/admin/**").hasRole("ADMIN")      
            .anyRequest().authenticated()
+           .requestMatchers(HttpMethod.POST, "/produtos/**/imagem").hasRole("ADMIN")
+           .anyRequest().authenticated()
+           .requestMatchers(HttpMethod.POST, "/usuarios/**/foto").authenticated() 
+           .anyRequest().permitAll()
                 )
-           .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-           .addFilter(new JwtAuthenticationFilter(
-            authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)), jwtUtil))
-           .addFilter(new JwtAuthorizationFilter(
-            authenticationManager(http.getSharedObject(AuthenticationConfiguration.class)), jwtUtil, userDetailsService));
+           .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+
+       
+        AuthenticationManager authenticationManager = authenticationManager(http.getSharedObject(AuthenticationConfiguration.class));
+
+      
+        http.addFilter(new JwtAuthenticationFilter(authenticationManager, jwtUtil));
+        http.addFilter(new JwtAuthorizationFilter(authenticationManager, jwtUtil, userDetailsService));
+
 
         return http.build();
     }
 
-    @Bean 
+    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:5173")); 
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "http://localhost:5173"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD", "PATCH"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setExposedHeaders(Arrays.asList("Authorization"));
+        configuration.setAllowedHeaders(Arrays.asList("*")); 
+        configuration.setExposedHeaders(Arrays.asList("Authorization")); 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
+        source.registerCorsConfiguration("/**", configuration); 
         return source;
     }
 
-    @Bean 
+    @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
-        
+
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-    @Bean 
+    @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
-
