@@ -28,6 +28,7 @@ import jakarta.validation.constraints.Email;
 @Table(name = "usuario")
 public class Usuario implements UserDetails, Serializable {
 
+
     private static final long serialVersionUID = 1L;
 
     @Id

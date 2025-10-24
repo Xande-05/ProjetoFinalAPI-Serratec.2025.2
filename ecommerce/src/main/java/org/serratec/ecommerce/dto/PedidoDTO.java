@@ -5,115 +5,86 @@ import java.util.Objects;
 
 import org.serratec.ecommerce.entity.Cliente;
 import org.serratec.ecommerce.entity.ItemPedido;
+import org.serratec.ecommerce.entity.Pedido;
 import org.serratec.ecommerce.entity.PedidoStatus;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 
 public class PedidoDTO {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column
-	@Enumerated(EnumType.STRING)
-	private PedidoStatus status;
-	
-	@OneToOne
-	@JoinColumn(name = "id_cliente" )
-	private Cliente clienteID;
-	
-	
-	
-	
-	public PedidoDTO(Long id, PedidoStatus status, Cliente clienteID, List<ItemPedido> itens) {
-		super();
-		this.id = id;
-		this.status = status;
-		this.clienteID = clienteID;
-		this.itens = itens;
-	}
+    private Long id;
+    private PedidoStatus status;
+    private Cliente cliente; 
+    private List<ItemPedido> itens; 
+
+   
+    public PedidoDTO() {
+        super();
+    }
+
+     
+    public PedidoDTO(Pedido pedido) {
+        this.id = pedido.getId();
+        this.status = pedido.getStatus();
+        this.cliente = pedido.getClienteID(); 
+        
+    }
 
 
-	public PedidoDTO() {
-		super();
-	}
-
-
-	private List<ItemPedido> itens;
-
+    public PedidoDTO(Long id, PedidoStatus status, Cliente cliente, List<ItemPedido> itens) {
+        super();
+        this.id = id;
+        this.status = status;
+        this.cliente = cliente;
+        this.itens = itens;
+    }
 
 	public Long getId() {
 		return id;
 	}
 
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 
 	public PedidoStatus getStatus() {
 		return status;
 	}
 
-
 	public void setStatus(PedidoStatus status) {
 		this.status = status;
 	}
 
-
 	public Cliente getCliente() {
-		return clienteID;
+		return cliente;
 	}
-
 
 	public void setCliente(Cliente cliente) {
-		this.clienteID = cliente;
+		this.cliente = cliente;
 	}
-
 
 	public List<ItemPedido> getItens() {
 		return itens;
 	}
 
-
 	public void setItens(List<ItemPedido> itens) {
 		this.itens = itens;
 	}
-	
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, itens);
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        PedidoDTO other = (PedidoDTO) obj;
+        return Objects.equals(id, other.id);
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PedidoRequestDTO other = (PedidoRequestDTO) obj;
-		return Objects.equals(id, other.id) && Objects.equals(itens, other.itens);
-	}
-
-
-	@Override
-	public String toString() {
-		return "PedidoRequestDTO [id=" + id + ", itens=" + itens + ", getId()=" + getId() + ", getItens()=" + getItens()
-				+ ", hashCode()=" + hashCode() + ", getClass()=" + getClass() + ", toString()=" + super.toString()
-				+ "]";
-	}
-	
+    @Override
+    public String toString() {
+        return "PedidoDTO [id=" + id + ", status=" + status + "]";
+    }
 }

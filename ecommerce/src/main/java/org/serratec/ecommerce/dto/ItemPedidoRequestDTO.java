@@ -12,18 +12,17 @@ public class ItemPedidoRequestDTO {
     @Min(value = 1, message = "A quantidade mínima para um item é 1.")
     private Integer quantidade;
 
+    public ItemPedidoRequestDTO() {}
+
     public Long getProdutoId() {
         return produtoId;
     }
-
     public void setProdutoId(Long produtoId) {
         this.produtoId = produtoId;
     }
-
     public Integer getQuantidade() {
         return quantidade;
     }
-
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }

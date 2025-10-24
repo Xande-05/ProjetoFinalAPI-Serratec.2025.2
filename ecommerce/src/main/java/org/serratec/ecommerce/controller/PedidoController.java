@@ -1,10 +1,8 @@
 package org.serratec.ecommerce.controller;
 
-import org.serratec.ecommerce.dto.PedidoDTO;
 import org.serratec.ecommerce.dto.PedidoRequestDTO;
+import org.serratec.ecommerce.dto.PedidoResponseDTO;
 import org.serratec.ecommerce.entity.ItemPedido;
-import org.serratec.ecommerce.entity.Pedido;
-import org.serratec.ecommerce.exception.ResourceNotFoundException;
 import org.serratec.ecommerce.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid; 
+
 @RestController
 @RequestMapping("/pedidos")
 public class PedidoController {
@@ -29,8 +29,8 @@ public class PedidoController {
     private PedidoService pedidoService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pedido> buscarPorId(@PathVariable Long id) {
-        Pedido pedido = pedidoService.buscarPorId(id);
+    public ResponseEntity<PedidoResponseDTO> buscarPorId(@PathVariable Long id) { 
+        PedidoResponseDTO pedido = pedidoService.buscarPorId(id); 
         return ResponseEntity.ok(pedido);
     }
 
@@ -44,27 +44,20 @@ public class PedidoController {
     }
 
     @PostMapping
-    public ResponseEntity<PedidoDTO> inserir(@RequestBody PedidoRequestDTO pedidoDTO) throws ResourceNotFoundException {
-        PedidoDTO novoPedido = pedidoService.inserir(pedidoDTO);
+    public ResponseEntity<PedidoResponseDTO> inserir(@Valid @RequestBody PedidoRequestDTO pedidoDTO) throws Exception { 
+        PedidoResponseDTO novoPedido = pedidoService.inserir(pedidoDTO); 
         return ResponseEntity.status(HttpStatus.CREATED).body(novoPedido);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Pedido> atualizar(@PathVariable Long id, @RequestBody Pedido novoPedido) {
-        Pedido pedidoExistente = pedidoService.buscarPorId(id);
-        if (pedidoExistente == null) {
-            return ResponseEntity.notFound().build();
-        }
-        pedidoExistente.setStatus(novoPedido.getStatus());
-        return ResponseEntity.ok(pedidoExistente);
+    public ResponseEntity<PedidoResponseDTO> atualizar(@PathVariable Long id, @Valid @RequestBody PedidoRequestDTO pedidoDTO) { 
+        PedidoResponseDTO pedidoAtualizado = pedidoService.atualizar(id, pedidoDTO); 
+        return ResponseEntity.ok(pedidoAtualizado);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id) {
-        Pedido pedido = pedidoService.buscarPorId(id);
-        if (pedido == null) {
-            return ResponseEntity.notFound().build();
-        }
+        pedidoService.deletar(id);
         return ResponseEntity.noContent().build();
     }
 }
