@@ -1,5 +1,7 @@
 package org.serratec.ecommerce.dto;
 
+import org.serratec.ecommerce.entity.Produto;
+
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 
@@ -12,7 +14,11 @@ public class ItemPedidoRequestDTO {
     @Min(value = 1, message = "A quantidade mínima para um item é 1.")
     private Integer quantidade;
 
-    public Long getProdutoId() {
+    public ItemPedidoRequestDTO(Produto produto) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Long getProdutoId() {
         return produtoId;
     }
 
