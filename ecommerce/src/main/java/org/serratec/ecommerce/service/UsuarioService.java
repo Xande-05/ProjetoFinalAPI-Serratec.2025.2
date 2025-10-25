@@ -2,8 +2,11 @@ package org.serratec.ecommerce.service;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Collection;
+
 import org.serratec.ecommerce.entity.Perfil;
 import org.serratec.ecommerce.entity.Usuario;
+import org.serratec.ecommerce.entity.UsuarioPerfil;
 import org.serratec.ecommerce.repository.PerfilRepository;
 import org.serratec.ecommerce.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +35,7 @@ public class UsuarioService {
 	    private String salvarArquivoFisico(MultipartFile file) {
 	        return "caminho/para/a/foto.jpg";
 	    }
-	}	
-	
 
-
-	
 	public Usuario criarUsuarioParaCliente(String nome, String email) {
         Usuario usuario = new Usuario();
         usuario.setNome(nome);
@@ -51,7 +50,7 @@ public class UsuarioService {
         }
 
 
-        usuario.getUsuarioPerfis().add(perfilCliente);
+        usuario.getUsuarioPerfis().addAll((Collection<? extends UsuarioPerfil>) perfilCliente);
         return usuarioRepository.save(usuario);
     }
 	
