@@ -26,15 +26,12 @@ public class JwtUtil {
 	@PostConstruct
 	public void init() {
 		this.secretKey = Keys.hmacShaKeyFor(jwtSecret.getBytes());
-
 	}
 
 	public String generateToken(String username) {
-		return Jwts.builder()
-				.setSubject(username)
+		return Jwts.builder().setSubject(username)
 				.setExpiration(new Date(System.currentTimeMillis() + this.jwtExpirationMsiliseg))
-				.signWith(secretKey)
-				.compact();
+				.signWith(this.secretKey).compact();
 	}
 
 	public boolean isValidToken(String token) {
@@ -59,6 +56,10 @@ public class JwtUtil {
 	}
 
 	public Claims getClaims(String token) {
-		return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody();
+		try {
+			return Jwts.parserBuilder().setSigningKey(this.secretKey).build().parseClaimsJws(token).getBody();
+		} catch (Exception e) {
+			return null;
+		}
 	}
 }

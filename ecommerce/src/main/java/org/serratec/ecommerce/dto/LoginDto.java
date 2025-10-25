@@ -8,11 +8,13 @@ public class LoginDto implements Serializable {
 	private String email;
 	private String senha;
 
+	public LoginDto() {
+	}
+
 	public LoginDto(String email, String senha) {
 		super();
 		this.email = email;
 		this.senha = senha;
-
 	}
 
 	public String getEmail() {
@@ -35,13 +37,11 @@ public class LoginDto implements Serializable {
 		return serialVersionUID;
 	}
 
-	public Object getUsername() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getUsername() {
+		return email;
 	}
 
-	public Object getPassword() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getPassword() {
+		return senha;
 	}
 }
