@@ -12,6 +12,7 @@
 
 Este projeto consiste na construção de um sistema de vendas online para uma empresa varejista, implementado como uma API RESTful robusta usando o framework Spring Boot. O sistema é estruturado em um Padrão em Camadas e utiliza princípios de Domain-Driven Design (DDD), atendendo a requisitos de segurança, persistência complexa (relações N:N), validações de negócio e integração com serviços externos (ViaCEP, E-mail).
 
+
 ---
 
 ## 🚀 Tecnologias e Stack Principal
@@ -192,6 +193,9 @@ mvn spring-boot:run
 ## Documentação 
 -	API: http://localhost:8080
 - Swagger: http://localhost:8080/swagger-ui/index.html
+
+
+<img width="1842" height="966" alt="Captura de tela 2025-10-28 203248" src="https://github.com/user-attachments/assets/b2d486ba-3839-4f6e-8476-a85553349ba6" />
 
  ---
 ## 👨‍💻 Autores
