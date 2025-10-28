@@ -120,16 +120,16 @@ mvn spring-boot:run
 - Swagger: http://localhost:8080/swagger-ui/index.html
 
  ---
-## 👨‍💻 Autores
+👨‍💻 Autores
+🔐 Bruno Ireno do Nascimento – Segurança e Autenticação, Foto
+📦 Diana Souza Ribeiro – Catálogo de Produtos, Paginação e documentação do projeto (README)
+📬 Alexandre Lício da Silva Morais – Cliente, Integrações e Email de aviso sobre desconto no mês
+🧮 Joao Pedro Breves Massambani de Souza – Pedidos, Transações e Query
+⚙️ Enzo Converso – Lógica de Negócio, Configurações e Cupons de desconto
 
-🔐 **Bruno Ireno do Nascimento** – Segurança e Autenticação  
-📦 **Diana Souza Ribeiro** – Catálogo de Produtos e documentação do projeto (README)  
-📬 **Alexandre Lício da Silva Morais** – Cliente e Integrações  
-🧮 **Joao Pedro Breves Massambani de Souza** – Pedidos e Transações  
-⚙️ **Enzo Converso** – Lógica de Negócio e Configurações
-
-🎓 Residentes do Serratec 2025.2  
+🎓 Residentes do Serratec 2025.2
 💻 Desenvolvedores Full Stack
+
 
 
 
