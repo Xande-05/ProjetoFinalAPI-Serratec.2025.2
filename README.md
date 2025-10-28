@@ -74,8 +74,7 @@ O projeto segue uma arquitetura em camadas para organizar as responsabilidades:
 ---
 ### Exemplos de Requisições
 
-1. Login
-
+## 1. Login
 ```http
 
  "email": "grupo2@gmail.com", // Ou outro email cadastrado
@@ -89,7 +88,8 @@ O projeto segue uma arquitetura em camadas para organizar as responsabilidades:
    
 --------------
 
-2.  Criar um cliente
+## 2. Criar um cliente
+
    
 ```http
 POST /clientes
@@ -106,11 +106,11 @@ POST /clientes
 
 ---------------------------
 
-3.  Atualizar
+## 3. Atualizar
 
       
 ```http
-Put / clientes
+PUT /clientes
 {
     "nome": "João Teste Atualizado",
     "email": "joao.teste.upd@email.com", // Email pode ser atualizado
@@ -125,26 +125,26 @@ Put / clientes
 
 -----------------------------
 
-4. Deletar
+## 4. Deletar
 
 ![deletecliente](https://github.com/user-attachments/assets/aafba931-85fd-49e4-a489-8127e702d0fd)
 
 
 ----------------------
 
-5. Email de confirmação de cadatsro
+## 5. Email de confirmação de cadatsro
 
-   <img width="1036" height="467" alt="image cadatsrado" src="https://github.com/user-attachments/assets/77f81870-30e2-4684-a540-0b96432cf58d" />
+<img width="1036" height="467" alt="image cadatsrado" src="https://github.com/user-attachments/assets/77f81870-30e2-4684-a540-0b96432cf58d" />
 
 --------------------------
 
-6. Email de confirmação de atualização de cadastro
+## 6. Email de confirmação de atualização de cadastro
 
 <img width="557" height="218" alt="image cadastro" src="https://github.com/user-attachments/assets/da9738bb-b084-4b3c-b158-51e7e1154359" />
 
 ------------------------
 
-7. Email de confirmação de desconto
+## 7. Email de confirmação de desconto
 
 <img width="1034" height="305" alt="image email desconto" src="https://github.com/user-attachments/assets/7b2ca25a-c1cb-4606-9490-80240520e2b2" />
 
