@@ -74,7 +74,84 @@ O projeto segue uma arquitetura em camadas para organizar as responsabilidades:
 ---
 ### Exemplos de Requisições
 
+1. Login
+
+```http
+
+ "email": "grupo2@gmail.com", // Ou outro email cadastrado
+ "senha": "123456" // Ou a senha correspondente
+
+```
+
+
+   <img width="933" height="483" alt="login" src="https://github.com/user-attachments/assets/bb064dad-ea25-47d6-9bde-7e3c173ecec7" /> 
+
+   
+--------------
+
+2.  Criar um cliente
+   
+```http
+POST /clientes
+   {
+    "nome": "João Teste",
+    "email": "joao.teste@email.com",
+    "telefone": "21999998888",
+    "cpf": "12345678901",
+    "cep": "25665290" // Exemplo de CEP, use um válido
+}
+```
+
+<img width="928" height="606" alt="postcliente" src="https://github.com/user-attachments/assets/b003b73d-f2db-4ed0-a9c4-1000d0dbe090" />
+
+---------------------------
+
+3.  Atualizar
+
+      
+```http
+Put / clientes
+{
+    "nome": "João Teste Atualizado",
+    "email": "joao.teste.upd@email.com", // Email pode ser atualizado
+    "telefone": "21999997777",
+    "cpf": "12345678901", // CPF geralmente não é atualizável, mas DTO permite
+    "cep": "20000000" // Novo CEP válido
+}
+```
+
+<img width="932" height="611" alt="putcliente" src="https://github.com/user-attachments/assets/44ade682-6ba6-491d-bfcb-62b3655908a7" />
+
+
+-----------------------------
+
+4. Deletar
+
+![deletecliente](https://github.com/user-attachments/assets/aafba931-85fd-49e4-a489-8127e702d0fd)
+
+
+----------------------
+
+5. Email de confirmação de cadatsro
+
+   <img width="1036" height="467" alt="image cadatsrado" src="https://github.com/user-attachments/assets/77f81870-30e2-4684-a540-0b96432cf58d" />
+
+--------------------------
+
+6. Email de confirmação de atualização de cadastro
+
+<img width="557" height="218" alt="image cadastro" src="https://github.com/user-attachments/assets/da9738bb-b084-4b3c-b158-51e7e1154359" />
+
+------------------------
+
+7. Email de confirmação de desconto
+
+<img width="1034" height="305" alt="image email desconto" src="https://github.com/user-attachments/assets/7b2ca25a-c1cb-4606-9490-80240520e2b2" />
+
 ---
+
+
+
 
 
 ## ⚙️ Como Rodar o Projeto
