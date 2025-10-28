@@ -200,11 +200,11 @@ mvn spring-boot:run
  ---
 ## 👨‍💻 Autores
 
-- 🔐 **Bruno Ireno do Nascimento** 
-- 📦 **Diana Souza Ribeiro**
-- 📬 **Alexandre Lício da Silva Morais** 
-- 🧮 **Joao Pedro Breves Massambani de Souza** 
-- ⚙️ **Enzo Converso** 
+- 🔐 **Bruno Ireno do Nascimento** - Foto
+- 📦 **Diana Souza Ribeiro** - Paginação
+- 📬 **Alexandre Lício da Silva Morais** - Email de aviso sobre desconto no mês
+- 🧮 **Joao Pedro Breves Massambani de Souza** - Query
+- ⚙️ **Enzo Converso** - Cupons de desconto
   
 
 🎓 **Residentes do Serratec 2025.2**  
