@@ -151,9 +151,6 @@ PUT /clientes
 ---
 
 
-
-
-
 ## ⚙️ Como Rodar o Projeto
 
 ### Pré-requisitos
@@ -176,7 +173,7 @@ https://github.com/Xande-05/ProjetoFinalAPI-Serratec.2025.2.git
 
 ## Properties
 ```
-spring.datasource.url=jdbc:postgresql://localhost:5432/seu_banco_de_dados
+spring.datasource.url=jdbc:postgresql://localhost:5432/ecommerce_api
 spring.datasource.username=postegres
 spring.datasource.password=123456
 spring.jpa.hibernate.ddl-auto=update
